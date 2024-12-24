@@ -1,7 +1,7 @@
 # Get List of Availability Zones in a Specific Region
 # Region is set in c1-versions.tf in Provider Block
 # Datasource-1
-data "aws_availability_zones" "my_azones" {
+data "aws_availability_zones" "my_AZones" {
   filter {
     name   = "opt-in-status"
     values = ["opt-in-not-required"]
@@ -12,7 +12,7 @@ data "aws_availability_zones" "my_azones" {
 # Get the List of Availability Zones in a Particular region where that respective Instance Type is supported
 # Datasource-2
 data "aws_ec2_instance_type_offerings" "my_ins_type" {
-  for_each = toset(data.aws_availability_zones.my_azones.names)
+  for_each = toset(data.aws_availability_zones.my_AZones.names)
   filter {
     name   = "instance-type"
     values = ["t3.micro"]
